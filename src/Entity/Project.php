@@ -44,6 +44,11 @@ class Project
      */
     private $blogs;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Thema::class, inversedBy="ProjectID")
+     */
+    private $thema;
+
     public function __construct()
     {
         $this->blogs = new ArrayCollection();
@@ -128,6 +133,18 @@ class Project
                 $blog->setProjectID(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getThema(): ?Thema
+    {
+        return $this->thema;
+    }
+
+    public function setThema(?Thema $thema): self
+    {
+        $this->thema = $thema;
 
         return $this;
     }
